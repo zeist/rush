@@ -52,4 +52,12 @@ module Rush::Commands
 		names = entries.map { |f| f.quoted_path }.join(' ')
 		system "mate #{names} #{args.join(' ')}"
 	end
+    
+	# Invoke vifm with args as right pane.
+	def vifm(*args)
+        currpath = entries[0].to_s[0..entries[0].to_s.length-2].to_s
+        currpath = currpath[0..currpath.rindex('/')]
+        system "vifm #{currpath} #{args.join(' ')}"
+	end
+
 end
